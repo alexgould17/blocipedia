@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Root path goes to home/index
+  root 'home#index'
+
+  # Routes for basic pages
+  get 'home/about'
+  get 'home/faq'
+  get 'home/contact'
+
+  # User routes
+  resources :users, only: [:new, :create, :show]
 end
