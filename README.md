@@ -46,4 +46,4 @@ Blocipedia rundown
 
 ## Testing Info
 ### Pre-seeded Accounts
-All test accounts have the email test.[role]X@blocipedia.test where [role] is the role the test account holds (admin, premium or standard) & X is the # account they are of that particular account level. The password on all test accounts is 123456. There are 3 standard users, 2 premium users & 1 admin user seeded to the db for testing purposes, all confirmed. NOTE: the admin test account has no number in the email address or user name.
+All test accounts have randomly-generated names & emails now *except* the admin account, which is still test.admin@blocipedia.test. All test passwords are still wsxedc. DB is now seeded with test wikis too.
