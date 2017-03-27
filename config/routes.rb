@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   get 'about' => 'home#about'
   get 'faq' => 'home#faq'
   get 'contact' => 'home#contact'
+
+  # Wiki routes, standard CRUD routes
+  resources :wikis
 end

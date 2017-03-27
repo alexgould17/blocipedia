@@ -1,0 +1,13 @@
+<h2>Create a New Wiki</h2>
+<%= form_for @wiki do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <br>
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 6, columns: 50, placeholder: "Body" %>
+  <br>
+  <%= f.label :private %>
+  <%= f.check_box :private %>
+  <br>
+  <%= f.submit "Create New Wiki" %>
+<% end %>

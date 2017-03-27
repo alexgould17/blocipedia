@@ -1,23 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Blocipedia rundown
 
-Things you may want to cover:
-
-## Ruby version
+## Project basics
+### Ruby version
 2.3.3
 
-* Configuration
+### Top-level paths
+- /about: Definition of Blocipedia.
+- /faq: Answers to frequently asked questions.
+- /contact: How to get in touch with Blocipedia's owner.
 
-* Database creation
+## Models
 
-* Database initialization
+### Wiki
+#### Attributes
+- Title: string
+- Body: text
+- Private: boolean (default: false)
+- User: reference (index)
 
-* How to run the test suite
+#### Associations to other models
+- Belongs to: User
 
-* Services (job queues, cache servers, search engines, etc.)
+## Controllers
 
-* Deployment instructions
-
-* ...
+### Wiki
+#### Actions
+- new
+- create
+- index
+- show
+- edit
+- update
+- delete

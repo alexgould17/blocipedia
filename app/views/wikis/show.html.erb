@@ -1,0 +1,8 @@
+<% if user_is_authorized_for_wiki?(@wiki) %>
+  <%= render @wiki %>
+  <br>
+  <%= link_to "Edit This Wiki", edit_wiki_path if current_user == @wiki.user %><br>
+  <%= link_to "Delete This Wiki", @wiki, method: :delete %>
+<% else %>
+  <em>You are not authorized to view this wiki!</em>
+<% end %>

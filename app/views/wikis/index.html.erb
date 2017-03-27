@@ -1,0 +1,6 @@
+<h2>Currently Available Wikis</h2>
+<% @wikis.each do |wiki| %>
+  <%= render wiki if user_is_authorized_for_wiki?(wiki) %>
+<% end %>
+<br>
+<%= link_to "Create New Wiki", new_wiki_path %>
