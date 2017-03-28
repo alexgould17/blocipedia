@@ -23,7 +23,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    wiki.user.admin? || wiki.user == user
+    user.admin? || wiki.user == user
   end
 
   def edit?
@@ -31,7 +31,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    wiki.user.admin? || wiki.user == user
+    user.admin? || wiki.user == user
   end
 
   class Scope < Scope

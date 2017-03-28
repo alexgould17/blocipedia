@@ -32,6 +32,8 @@ gem 'devise'
 gem 'pundit'
 # Use Faker for test & seeding data
 gem 'faker'
+# Use Bootstrap for a boilerplate style
+gem 'bootstrap-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

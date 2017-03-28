@@ -1,17 +1,22 @@
-<h2>Edit Wiki <%= @wiki.title %></h2>
-<% if policy(@wiki).edit? %>
-  <%= form_for @wiki do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Title" %>
-    <br>
-    <%= f.label :body %>
-    <%= f.text_area :body, rows: 6, columns: 50, placeholder: "Body" %>
-    <br>
-    <%= f.label :private %>
-    <%= f.check_box :private %>
-    <br>
-    <%= f.submit "Update Wiki" %>
-  <% end %>
-<% else %>
- <em>You are not authorized to edit this wiki!</em>
-<% end %>
+<div class="row">
+  <div class="col-md-8">
+    <h2>Edit Wiki "<%= @wiki.title %>"</h2>
+    <% if policy(@wiki).edit? %>
+      <%= form_for @wiki do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+        <br>
+        <%= f.label :body %>
+        <%= f.text_area :body, class: "form-control", rows: 6, columns: 50, placeholder: "Body" %>
+        <br>
+        <%= f.label :private %>
+        <%= f.check_box :private %>
+        <br>
+        <%= link_to "Cancel", @wiki, class: "btn btn-cancel" %>
+        <%= f.submit "Update Wiki", class: "btn btn-success" %>
+      <% end %>
+    <% else %>
+     <h2>You are not authorized to edit this wiki!</h2>
+    <% end %>
+  </div>
+</div>

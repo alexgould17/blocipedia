@@ -1,8 +1,16 @@
-<h2>Currently Available Wikis</h2>
+<div class="row">
+  <div class="col-md-8">
+    <h2>Currently Available Wikis</h2>
+  </div>
+</div>
 <% if policy(@wikis).index? %>
   <% @wikis.each do |wiki| %>
     <%= render wiki if policy(wiki).show? %>
   <% end %>
   <br>
-  <%= link_to "Create New Wiki", new_wiki_path %>
+  <div class="row">
+    <div class="col-md-8">
+      <%= link_to "Create New Wiki", new_wiki_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

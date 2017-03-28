@@ -1,8 +1,11 @@
 <% if policy(@wiki).show? %>
   <%= render @wiki %>
-  <br>
-  <%= link_to "Edit This Wiki", edit_wiki_path if policy(@wiki).edit? %><br>
-  <%= link_to "Delete This Wiki", @wiki, method: :delete if policy(@wiki).destroy? %>
+  <div class="row">
+    <div class="col-md-8">
+      <%= link_to "Edit This Wiki", edit_wiki_path, class: "btn btn-primary" if policy(@wiki).edit? %><br>
+      <%= link_to "Delete This Wiki", @wiki, method: :delete, class: "btn btn-danger" if policy(@wiki).destroy? %>
+    </div>
+  </div>
 <% else %>
-  <em>You are not authorized to view this wiki!</em>
+  <h2>You are not authorized to view this wiki!</h2>
 <% end %>

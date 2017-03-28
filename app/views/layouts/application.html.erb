@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Blocipedia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,24 +12,32 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><%= link_to "Blocipedia", root_path %></li>
-          <li><%= link_to "Wikis", wikis_path %></li>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "FAQ", faq_path %></li>
-          <li><%= link_to "Contact", contact_path %></li>
-          <li>
-            <% if user_signed_in? %>
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-            <% else %>
-              <%= link_to "Sign In", new_user_session_path %>
-            <% end %>
-          </li>
-        </ul>
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li><%= link_to "Blocipedia", root_path %></li>
+            <li><%= link_to "Wikis", wikis_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "FAQ", faq_path %></li>
+            <li><%= link_to "Contact", contact_path %></li>
+            <li>
+              <% if user_signed_in? %>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+              <% else %>
+                <%= link_to "Sign In", new_user_session_path %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
-    <p class="notice"><%= notice || params[:notice] %></p>
-    <p class="alert"><%= alert || params[:alert] %></p>
-    <%= yield %>
+    <div class="container">
+      <% if notice || params[:notice] %>
+        <p class="notice"><%= notice || params[:notice] %></p>
+      <% end %>
+      <% if notice || params[:notice] %>
+        <p class="alert"><%= alert || params[:alert] %></p>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
