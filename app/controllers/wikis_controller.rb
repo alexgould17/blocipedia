@@ -8,11 +8,17 @@ class WikisController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
-    authorize @wiki
-    if @wiki.save
-      redirect_to @wiki, notice: "New wiki #{@wiki.title} created!"
+    if @wiki.private && @wiki.user.standard?
+      flash[:alert] = "You are not allowed to create private wikis!"
+      render :new
     else
-      render :new, alert: "Error saving new wiki #{@wiki.title}, please try again."
+      authorize @wiki
+      if @wiki.save
+        redirect_to @wiki, notice: "New wiki \"#{@wiki.title}\" created!"
+      else
+        flash[:alert] = "Error saving new wiki \"#{@wiki.title}\", please try again."
+        render :new
+      end
     end
   end
 
@@ -35,11 +41,16 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
     @wiki.user = current_user
-    authorize @wiki
-    if @wiki.save
-      redirect_to @wiki, notice: "Wiki #{@wiki.title} updated."
+    if @wiki.private && @wiki.user.standard?
+      flash[:alert] = "You are not allowed to create private wikis!"
+      render :edit
     else
-      render :edit, "Update on #{@wiki.title} failed. Please try again."
+      authorize @wiki
+      if @wiki.save
+        redirect_to @wiki, notice: "Wiki \"#{@wiki.title}\" updated."
+      else
+        render :edit, "Update on wiki \"#{@wiki.title} failed.\" Please try again."
+      end
     end
   end
 
@@ -47,9 +58,9 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.destroy
-      redirect_to root_path, notice: "Wiki #{@wiki.title} deleted."
+      redirect_to root_path, notice: "Wiki \"#{@wiki.title}\" deleted."
     else
-      render :show, alert: "Failed to delete #{@wiki.title}. Please try again."
+      render :show, alert: "Failed to delete wiki \"#{@wiki.title}\". Please try again."
     end
   end
 

@@ -51,11 +51,11 @@
       </nav>
     </header>
     <div class="container">
-      <% if notice || params[:notice] %>
-        <p class="notice" id="noticeDiv"><%= notice || params[:notice] %></p>
+      <% if notice  %>
+        <p class="notice" id="noticeDiv"><%= notice %></p>
       <% end %>
-      <% if notice || params[:notice] %>
-        <p class="alert" id="alertDiv"><%= alert || params[:alert] %></p>
+      <% if alert %>
+        <p class="alert" id="alertDiv"><%= alert %></p>
       <% end %>
       <%= yield %>
     </div>

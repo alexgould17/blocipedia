@@ -28,6 +28,7 @@ class ChargesController < ApplicationController
   end
 
   def destroy
+    current_user.wikis.each { |w| w.update_attribute(:private, false) }
     current_user.update_attribute(:role, :standard)
     flash[:notice] = "Sorry to see you leave premium, #{current_user.name}!"
     redirect_to root_path
