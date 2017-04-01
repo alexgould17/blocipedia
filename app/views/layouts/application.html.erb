@@ -31,11 +31,18 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user_signed_in? ? current_user.name : "Guest User" %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
+                  <li><%= link_to "Edit your profile", edit_user_registration_path %></li>
+                  <% if current_user.standard? %>
+                    <li><%= link_to "Upgrade to premium", new_charge_path %></li>
+                  <% else %>
+                    <li><%= link_to "Cancel my premium membership", '/charges/delete', method: :delete %></li>
+                  <% end %>
+                  <li role="separator" class="divider"></li>
                   <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
                 <% else %>
                   <li><%= link_to "Sign In", new_user_session_path %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Sign Up!" %></li>
+                  <li><%= link_to "Sign Up!", new_user_registration_path %></li>
                 <% end %>
               </ul>
             </li>

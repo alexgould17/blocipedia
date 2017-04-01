@@ -36,6 +36,8 @@ gem 'faker'
 gem 'bootstrap-sass'
 # Use Stripe to accept credit card payments
 gem 'stripe'
+# Use Figaro to protect sensitive environment data
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
