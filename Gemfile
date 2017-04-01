@@ -34,6 +34,8 @@ gem 'pundit'
 gem 'faker'
 # Use Bootstrap for a boilerplate style
 gem 'bootstrap-sass'
+# Use Stripe to accept credit card payments
+gem 'stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

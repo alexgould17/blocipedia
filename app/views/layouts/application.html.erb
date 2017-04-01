@@ -11,20 +11,33 @@
 
   <body>
     <header>
-      <nav>
+      <nav class="navbar navbar-default">
         <div class="container">
-          <ul class="nav nav-tabs">
-            <li><%= link_to "Blocipedia", root_path %></li>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blocipedia <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Home", root_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "About", about_path %></li>
+                <li><%= link_to "FAQ", faq_path %></li>
+                <li><%= link_to "Contact", contact_path %></li>
+              </ul>
+            </li>
             <li><%= link_to "Wikis", wikis_path %></li>
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "FAQ", faq_path %></li>
-            <li><%= link_to "Contact", contact_path %></li>
-            <li>
-              <% if user_signed_in? %>
-                <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-              <% else %>
-                <%= link_to "Sign In", new_user_session_path %>
-              <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user_signed_in? ? current_user.name : "Guest User" %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Sign In", new_user_session_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Sign Up!" %></li>
+                <% end %>
+              </ul>
             </li>
           </ul>
         </div>
@@ -32,10 +45,10 @@
     </header>
     <div class="container">
       <% if notice || params[:notice] %>
-        <p class="notice"><%= notice || params[:notice] %></p>
+        <p class="notice" id="noticeDiv"><%= notice || params[:notice] %></p>
       <% end %>
       <% if notice || params[:notice] %>
-        <p class="alert"><%= alert || params[:alert] %></p>
+        <p class="alert" id="alertDiv"><%= alert || params[:alert] %></p>
       <% end %>
       <%= yield %>
     </div>
