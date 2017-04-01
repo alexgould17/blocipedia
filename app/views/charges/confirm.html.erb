@@ -1,0 +1,14 @@
+<h2>Downgrade to Standard User</h2>
+<p class="alert">WARNING: You are about to downgrade to a standard user from a premium user.</p>
+<% if has_private_wikis?(current_user) %>
+  <p>All of your private wikis will be made public!</p>
+  <ul>
+    <% current_user.wikis.each do |wiki| %>
+      <% if wiki.private %>
+        <li><%= wiki.title %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<p>Are you sure you want to downgrade still?</p>
+<%= link_to "Downgrade Me Anyways", charges_delete_path, method: :delete, class: 'btn btn-danger' %>

@@ -27,6 +27,9 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
+  def confirm
+  end
+
   def destroy
     current_user.wikis.each { |w| w.update_attribute(:private, false) }
     current_user.update_attribute(:role, :standard)

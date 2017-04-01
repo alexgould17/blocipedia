@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   # Routes for the charges controller, for up or downgrading users
   resources :charges, only: [:new, :create]
+  get 'charges/confirm' => 'charges#confirm'
   delete 'charges/delete' => 'charges#destroy'
 end
