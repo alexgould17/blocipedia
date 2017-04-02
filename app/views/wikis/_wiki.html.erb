@@ -4,6 +4,6 @@
     <% if wiki.private %>
       <small></em>private</em></small>
     <% end %>
-    <p><%= wiki.body %></p>
+    <p><%= @markdown.render(@wiki.body).html_safe %></p>
   </div>
 </div>

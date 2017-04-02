@@ -38,6 +38,8 @@ gem 'bootstrap-sass'
 gem 'stripe'
 # Use Figaro to protect sensitive environment data
 gem 'figaro'
+# Use Redcarpet to render wikis with Markdown
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
