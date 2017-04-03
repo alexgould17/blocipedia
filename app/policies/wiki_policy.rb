@@ -11,7 +11,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    !wiki.private || wiki.user == user || !Collaborator.where(user_id: user.id, wiki_id: wiki.id).empty?
   end
 
   def create?
@@ -23,7 +23,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || wiki.user == user
+    user.admin? || wiki.user == user || !Collaborator.where(user_id: user.id, wiki_id: wiki.id).empty?
   end
 
   def edit?

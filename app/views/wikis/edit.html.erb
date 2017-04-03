@@ -4,7 +4,7 @@
     <% if policy(@wiki).edit? %>
       <%= form_for @wiki do |f| %>
         <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Title", autofocus: true %>
         <br>
         <%= f.label :body %>
         <%= f.text_area :body, class: "form-control", rows: 6, columns: 50, placeholder: "Body" %>
@@ -14,9 +14,13 @@
           <%= f.check_box :private %>
         <% end %>
         <br>
-        <%= link_to "Cancel", @wiki, class: "btn btn-cancel" %>
+        <%= f.label :users, text: "Add or remove collaborator (by email)" %>
+        <%= f.text_field :users, class: "form-control", placeholder: "User e-mail", value: "" %>
+        <br>
+        <%= link_to "Cancel", @wiki, class: "btn btn-primary" %>
         <%= f.submit "Update Wiki", class: "btn btn-success" %>
       <% end %>
+      <br>
     <% else %>
      <h2>You are not authorized to edit this wiki!</h2>
     <% end %>

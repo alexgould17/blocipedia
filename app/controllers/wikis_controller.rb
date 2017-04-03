@@ -42,16 +42,47 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
     @wiki.user = current_user
+
+    # Check to see if we need to add/remove collaborators & make the necessary changes
+    email = params[:wiki][:users]
+    if email && email != ""
+      user = User.where(email: email).first
+      if !user
+        flash[:alert] = "No user found with email: #{email}."
+        render :edit
+        return
+      end
+      collaborator = Collaborator.where(user_id: user.id, wiki_id: @wiki.id)
+      if !collaborator.empty?
+        puts collaborator
+        unless collaborator.destroy
+          flash[:alert] = "Error removing user #{user.name} as a collaborator. Please try again."
+          render :edit
+          return
+        end
+      else
+        collaborator = Collaborator.new(user_id: user.id, wiki_id: @wiki.id)
+        unless collaborator.save
+          flash[:alert] = "Error adding user #{user.name} as a collaborator. Please try again."
+          render :edit
+          return
+        end
+      end
+    end
+
+    # Make sure standard users aren't trying to edit private wikis on the down low
     if @wiki.private && @wiki.user.standard?
       flash[:alert] = "You are not allowed to create private wikis!"
       render :edit
+      return
+    end
+
+    # Authorize via pundit policy & try to save
+    authorize @wiki
+    if @wiki.save
+      redirect_to @wiki, notice: "Wiki \"#{@wiki.title}\" updated."
     else
-      authorize @wiki
-      if @wiki.save
-        redirect_to @wiki, notice: "Wiki \"#{@wiki.title}\" updated."
-      else
-        render :edit, "Update on wiki \"#{@wiki.title} failed.\" Please try again."
-      end
+      render :edit, "Update on wiki \"#{@wiki.title} failed.\" Please try again."
     end
   end
 
