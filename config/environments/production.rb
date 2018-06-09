@@ -85,5 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Use localhost as the mailer in development
-  config.action_mailer.default_url_options = { host: 'protected-depths-17595.herokuapp.com' }
+  #config.action_mailer.default_url_options = { host: 'protected-depths-17595.herokuapp.com' }
 end

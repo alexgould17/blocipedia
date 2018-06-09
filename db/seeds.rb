@@ -5,7 +5,7 @@ test_accts = []
 # Admin test account
 test_admin = test_accts << User.create!(
   name: "Test Admin",
-  email: "test.admin@blocipedia.test",
+  email: "admin@test.test",
   password: test_pw,
   password_confirmation: test_pw,
   role: :admin
