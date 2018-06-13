@@ -1,9 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Temporary so we can reset the database hopefully.
-  DISABLE_DATABASE_ENVIRONMENT_CHECK = 1
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
