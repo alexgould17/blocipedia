@@ -34,9 +34,9 @@ end
 end
 
 # Update accounts to bypass devise confirmation process
-test_accts.each do |a|
-  a.update_attribute(:confirmed_at, 1.seconds.ago)
-end
+# test_accts.each do |a|
+#   a.update_attribute(:confirmed_at, 1.seconds.ago)
+# end
 
 # Seed with 15 random wikis
 15.times do
