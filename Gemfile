@@ -62,7 +62,8 @@ end
 
 group :production do
   # Use postgres on Heroku
-  gem 'pg'
+  gem 'pg', '~> 0.21'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
